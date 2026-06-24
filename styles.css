@@ -1,0 +1,343 @@
+:root {
+  color-scheme: dark;
+  --bg: #050712;
+  --panel: rgba(10, 16, 34, 0.82);
+  --panel-strong: rgba(15, 24, 52, 0.95);
+  --cyan: #00f5ff;
+  --pink: #ff2bd6;
+  --lime: #8cff00;
+  --amber: #ffd166;
+  --text: #edf7ff;
+  --muted: #9db0c8;
+  --line: rgba(0, 245, 255, 0.22);
+  --danger: #ff5470;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(255, 43, 214, 0.2), transparent 32rem),
+    radial-gradient(circle at bottom right, rgba(0, 245, 255, 0.2), transparent 34rem),
+    var(--bg);
+  color: var(--text);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.grid-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0, 245, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 245, 255, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent);
+}
+
+.app-shell {
+  position: relative;
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  gap: 1.5rem;
+  width: min(1440px, calc(100% - 2rem));
+  min-height: calc(100vh - 2rem);
+  margin: 1rem auto;
+}
+
+.sidebar,
+.workspace,
+.editor-card,
+.transmission-panel {
+  border: 1px solid var(--line);
+  box-shadow: 0 0 32px rgba(0, 245, 255, 0.08), inset 0 0 32px rgba(255, 43, 214, 0.03);
+  backdrop-filter: blur(18px);
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 28px;
+  background: var(--panel);
+}
+
+.brand-card {
+  padding: 1.25rem;
+  border-radius: 22px;
+  background: linear-gradient(145deg, rgba(0, 245, 255, 0.12), rgba(255, 43, 214, 0.1));
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--cyan);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0.75rem;
+  font-size: clamp(2.25rem, 7vw, 4.8rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+h2 {
+  max-width: 820px;
+  margin-bottom: 0;
+  font-size: clamp(1.75rem, 4vw, 4.2rem);
+  line-height: 0.98;
+}
+
+.brand-copy,
+.transmission-panel li {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.release-link,
+.ghost-button,
+.danger-button,
+.primary-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.release-link {
+  width: 100%;
+  margin-top: 1rem;
+  border: 1px solid rgba(140, 255, 0, 0.42);
+  color: var(--lime);
+  font-family: "JetBrains Mono", monospace;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.stats-grid article {
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.stats-grid span {
+  display: block;
+  color: var(--lime);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.stats-grid small {
+  color: var(--muted);
+}
+
+.primary-action {
+  border: 0;
+  background: linear-gradient(90deg, var(--cyan), var(--pink));
+  color: #050712;
+  font-weight: 800;
+}
+
+.notes-list {
+  display: grid;
+  gap: 0.75rem;
+  overflow: auto;
+  padding-right: 0.25rem;
+}
+
+.note-card {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid rgba(0, 245, 255, 0.14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  text-align: left;
+}
+
+.note-card.active {
+  border-color: var(--pink);
+  box-shadow: 0 0 22px rgba(255, 43, 214, 0.18);
+}
+
+.note-card strong,
+.note-card small {
+  display: block;
+}
+
+.note-card small {
+  margin-top: 0.35rem;
+  color: var(--muted);
+}
+
+.workspace {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 28px;
+  background: var(--panel);
+}
+
+.topbar,
+.transmission-panel {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: 22px;
+  background: var(--panel-strong);
+}
+
+.topbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 0.75rem;
+}
+
+.ghost-button,
+.danger-button {
+  padding: 0 1rem;
+  background: transparent;
+}
+
+.ghost-button {
+  border: 1px solid rgba(0, 245, 255, 0.4);
+  color: var(--cyan);
+}
+
+.danger-button {
+  border: 1px solid rgba(255, 84, 112, 0.45);
+  color: var(--danger);
+}
+
+.editor-card {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1.25rem;
+  border-radius: 22px;
+  background: rgba(5, 7, 18, 0.76);
+}
+
+label {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  margin-top: 0.45rem;
+  border: 1px solid rgba(0, 245, 255, 0.18);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--text);
+  outline: none;
+}
+
+input,
+select {
+  min-height: 48px;
+  padding: 0 1rem;
+}
+
+textarea {
+  min-height: 44vh;
+  padding: 1rem;
+  resize: vertical;
+  line-height: 1.65;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 4px rgba(0, 245, 255, 0.1);
+}
+
+.meta-row {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1rem;
+}
+
+.transmission-panel {
+  align-items: center;
+}
+
+.transmission-panel ul {
+  margin: 0;
+}
+
+.primary-action:hover,
+.release-link:hover,
+.ghost-button:hover,
+.danger-button:hover,
+.note-card:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 980px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    max-height: none;
+  }
+
+  .topbar,
+  .transmission-panel {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    width: min(100% - 1rem, 1440px);
+    margin: 0.5rem auto;
+  }
+
+  .meta-row,
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
